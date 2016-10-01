@@ -6,3 +6,7 @@ pg 91, question 4: seems it's not clear how to answer the question
 pg 94, first paragraph grammar issue: you say "constructors headed towards negative infinity, zero, and recursive
 constructors headed towards positive infinity." the second "recursive constructors headed towards" seems redundant
 and made it a bit harder to read.
+
+pg 112, question 3. It's not clear where I should refer back to for reference on this exercise. It's
+also unclear what sort of answer your looking for. Am I supposed to be writing a function or finding
+syntax errors in existing code?
