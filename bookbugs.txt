@@ -10,3 +10,5 @@ and made it a bit harder to read.
 pg 112, question 3. It's not clear where I should refer back to for reference on this exercise. It's
 also unclear what sort of answer your looking for. Am I supposed to be writing a function or finding
 syntax errors in existing code?
+
+pg 140, question 1. I don't know what bottom is. I don't think it's been in the book before.
