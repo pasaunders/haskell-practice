@@ -1,4 +1,4 @@
-module WeekDay where
+-- module WeekDay where
 
 data DayOfWeek =
   Mon | Tue | Wed | Thu | Fri | Sat | Sun
