@@ -1,5 +1,6 @@
 module TypeCheck where
 
+
 -- data Rocks = Rocks String
 --   deriving (Eq, Show)
 --

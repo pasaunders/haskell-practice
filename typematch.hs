@@ -2,11 +2,11 @@ module TypeMatch where
 
 import Data.List(sort)
 
-mySort :: [Char] -> [Char]
-mySort = sort
-
-signifier :: Ord a => [a] -> a
-signifier xs = head (mySort xs)
+-- mySort :: [Char] -> [Char]
+-- mySort = sort
+--
+-- signifier :: [Char] -> Char
+-- signifier xs = head (mySort xs)
 
 -- young :: [Char] -> Char
 -- young xs = head (sort xs)
