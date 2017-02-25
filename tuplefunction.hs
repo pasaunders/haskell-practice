@@ -10,3 +10,6 @@ fst3 (x, _, _) = x
 third3 :: (a, b, c) -> c
 third3 (_, _, x) = x
 
+exercise3 :: (a, b, c) -> (d, e, f) -> ((a, d), (c, f))
+exercise3 (x, y, z) (w, e, f) = ((a, d), (c, f))
+
