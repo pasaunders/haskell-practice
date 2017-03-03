@@ -1,0 +1,43 @@
+module TypeCheck where
+
+
+-- data Rocks = Rocks String
+--   deriving (Eq, Show)
+--
+-- data Yeah = Yeah Bool
+--   deriving (Eq, Show)
+--
+-- data Papu = Papu Rocks Yeah
+--   deriving (Eq, Show)
+--
+-- phew = Papu (Rocks "chases") (Yeah True)
+--
+-- truth = Papu (Rocks "chomskydoz") (Yeah True)
+--
+-- equalityForall :: Papu -> Papu -> Bool
+-- equalityForall p p' = p == p'
+--
+-- comparePapus :: Papu -> Papu -> Bool
+-- comparePapus p p' = p > p' -- no instance of Ord, won't typecheck
+--
+-- type Subject = String
+-- type Verb = String
+-- type Object = String
+--
+-- data Sentence = Sentence Subject Verb Object
+--   deriving (Eq, Show)
+--
+-- s1 = Sentence "dogs" "drool" -- needs another string here
+-- s2 = Sentence "Julie" "loves" "dogs"
+
+-- data Mood = Blah | Woot
+--   deriving Show
+--
+-- settleDown x = if x == Woot -- needs instance of Eq for mood
+--   then Blah
+--   else x
+--
+-- data Person = Person Bool
+--
+-- printPerson :: Person -> IO()
+-- printPerson person = putStrLn (show person) -- needs instance of show for person
