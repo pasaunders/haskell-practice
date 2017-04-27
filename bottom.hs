@@ -13,17 +13,18 @@ fibonacci 0 = 0
 fibonacci 1 = 1
 fibonacci x = fibonacci (x - 1) + fibonacci (x - 2)
 
-data DividedResult =
-  Result Integer | DividedByZero
+data DividedResult a =
+  Result (a, a) | DividedByZero deriving Show
 
 
 -- ask ben how to do all this, see textbook pg 293
-dividedBy :: Integral a => a -> a -> (a, a)
+dividedBy :: Integral a => a -> a -> DividedResult a
 dividedBy num denom = go num denom 0
   where go n d count
           | d == 0 = DividedByZero
-          | n < d = (count, n)
-          | otherwise = go (n - d) d (count + 1)
+          | abs n < abs d = Result (count, n)
+          | (n > 0 && d > 0) || (n < 0 && d < 0) = go (n - d) d (count + 1)
+          | otherwise = go (n + d) d (count - 1)
 
 lineAddition :: (Eq a, Num a) => a -> a
 lineAddition 0 = 0
