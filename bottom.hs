@@ -16,7 +16,6 @@ fibonacci x = fibonacci (x - 1) + fibonacci (x - 2)
 data DividedResult a =
   Result (a, a) | DividedByZero deriving Show
 
-
 -- ask ben how to do all this, see textbook pg 293
 dividedBy :: Integral a => a -> a -> DividedResult a
 dividedBy num denom = go num denom 0
@@ -35,3 +34,8 @@ multiplyBy factorOne factorTwo = go 0 factorTwo 0
   where go factor target count
           | count == target = factor
           | otherwise = go (factor + factorOne) target (count + 1)
+
+mcCarthy :: (Num a, Ord a) => a -> a
+mcCarthy x
+  | x > 100 = x - 10
+  | otherwise = mcCarthy(mcCarthy (x + 11))
