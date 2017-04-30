@@ -24,3 +24,15 @@ eftChar :: Char -> Char -> [Char]
 eftChar x y
   | x == y = [y]
   | otherwise = x : eftChar (succ x) y
+
+myWords :: String -> [String]
+myWords [] = []
+myWords a = (takeWhile (/= ' ') a) : myWords (drop 1 (dropWhile (/= ' ') a))
+
+myLines :: String -> [String]
+myLines [] = []
+myLines a = (takeWhile (/= '\n') a) : myLines (drop 1 (dropWhile (/= '\n') a))
+
+myParameters :: String -> Char -> [String]
+myParameters [] _ = []
+myParameters a b = (takeWhile (/= b) a) : myParameters (drop 1 (dropWhile (/= b) a)) b
