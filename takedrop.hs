@@ -20,10 +20,16 @@ rvrs x = let
   in concat [awe, " ", is, " ", cur]
 
 mySqr :: Int -> [Int]
-mSqr [x^2 | x <- [1..15]]
+mSqr x = [x^2 | x <- [1..5]]
 
-myCube :: Int 
+myCube :: Int -> [Int]
+myCube x = [x^3 | x <- [1..5]]
 
 [x | x <- mySqr, rem x 2 == 0]
 [(x, y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
 take 5 [ (x, y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
+
+[(x, y) | x <- mySqr, y <- myCube]
+[(x, y) | x <- mySqr, y <- myCube, x < 50, y < 50]
+
+length [(x, y) | x <- mySqr, y <- myCube, x < 50, y < 50]
