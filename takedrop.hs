@@ -18,3 +18,12 @@ rvrs x = let
   is = take 2 (drop 6 x)
   awe = take 7 (drop 9 x)
   in concat [awe, " ", is, " ", cur]
+
+mySqr :: Int -> [Int]
+mSqr [x^2 | x <- [1..15]]
+
+myCube :: Int 
+
+[x | x <- mySqr, rem x 2 == 0]
+[(x, y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
+take 5 [ (x, y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
