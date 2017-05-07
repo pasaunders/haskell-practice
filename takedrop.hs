@@ -74,3 +74,17 @@ upperFilter x = filter (\y -> not (isUpper y)) x
 
 lowerFilter :: String -> String
 lowerFilter x = filter isUpper x
+
+capString :: String -> String
+capString [] = []
+capString (x : xs) = [toUpper x] ++ xs
+
+recurseAllcaps :: String -> String
+recurseAllcaps [] = []
+recurseAllcaps (x : xs) = [toUpper x] ++ recurseAllcaps xs
+
+firstCap :: String -> Char
+firstCap x = toUpper . head $ x
+
+firstCapPointFree :: String -> Char
+firstCapPointFree = toUpper . head
