@@ -34,4 +34,5 @@ theDatabase =
   ]
 
   filterDbDate :: [DatabaseItem] -> [UTCTime]
-  filterDbDate x = 
+  filterDbDate DbDate time = time
+  filterDbDate
