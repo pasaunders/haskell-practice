@@ -38,3 +38,4 @@ theDatabase =
   filterDbDate x = foldr (\ a b -> case a b of
                                     _ DbDate _ -> a ++ b
                                     _ _ _-> a ) [] x
+
