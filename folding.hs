@@ -35,4 +35,8 @@ theDatabase =
   ]
 
   filterDbDate :: [DatabaseItem] -> [UTCTime]
-  filterDbDate x = foldr (\ a b -> if b == DbDate then a ++ b ) [] x
+  filterDbDate x = foldr (\ a b -> 
+                            case b of
+                              DbDate c -> a ++ c
+                              _ -> a
+                          ) [] x
