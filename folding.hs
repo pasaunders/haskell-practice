@@ -34,8 +34,27 @@ theDatabase =
             (secondsToDiffTime 34123))
   ]
 
-  filterDbDate :: [DatabaseItem] -> [UTCTime]
-  filterDbDate x = foldr (\ a b -> case a b of
-                                    _ DbDate _ -> a ++ b
-                                    _ _ _-> a ) [] x
+filterDbDate :: [DatabaseItem] -> [UTCTime]
+filterDbDate x = foldr findDate [] x
+  where findDate :: DatabaseItem -> [UTCTime] -> [UTCTime]
+        findDate (DbDate time) ys = time : ys
+        findDate _ zs = zs
+
+
+findDate2 :: DatabaseItem -> [UTCTime] -> [UTCTime]
+findDate2 x ys =
+  case x of
+    DbDate z -> z : ys
+    _ -> ys
+
+filterDbNumber :: [DatabaseItem] -> [Integer]
+filterDbNumber x = foldr findNumber [] x
+  where findNumber :: DatabaseItem -> [Integer] -> [Integer]
+        findNumber (DbNumber number) ys = number : ys
+        findNumber _ ys = ys
+
+
+-- working with datatypes
+-- (DbDate undefined) :: DatabaseItem
+-- True :: Bool
 
