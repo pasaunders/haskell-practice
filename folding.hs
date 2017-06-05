@@ -100,3 +100,19 @@ selectSecondP (x:xs) y = selectThirdP x y : selectSecondP xs y
 
 selectThirdP :: Char -> Char -> (Char, Char, Char)
 selectThirdP y z = ('p', y, z)
+
+myOrDirect :: [Bool] -> Bool
+myOrDirect [] = False
+myOrDirect (x:xs)
+  | x == True = True
+  | x == False = myOrDirect xs
+
+myOrDirectSymbol :: [Bool] -> Bool
+myOrDirectSymbol [] = False
+myOrDirectSymbol (x:xs) = x || myOrDirectSymbol xs
+
+myOrFolding :: [Bool] -> Bool
+myOrFolding = foldr (\a b -> if a == True then True else b) False
+
+myOrFoldingPointFree :: [Bool] -> Bool
+myOrFoldingPointFree = foldr (||) False
