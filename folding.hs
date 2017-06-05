@@ -58,3 +58,45 @@ filterDbNumber x = foldr findNumber [] x
 -- (DbDate undefined) :: DatabaseItem
 -- True :: Bool
 
+filterDbRecent :: [DatabaseItem] -> [UTCTime]
+filterDbRecent x = foldr filterRecent [] x
+  where filterRecent :: DatabaseItem -> [UTCTime] -> [UTCTime]
+        filterRecent (DbDate time) zs
+          | zs == [] = [time]
+          | time > head zs = [time]
+          | otherwise = zs
+        filterRecent _ zs = zs
+
+addDatabase :: [DatabaseItem] -> Integer
+addDatabase x = sum (foldr findNumber [] x)
+  where findNumber :: DatabaseItem -> [Integer] -> [Integer]
+        findNumber (DbNumber y) zs = y : zs
+        findNumber _ zs = zs
+
+
+makeWords :: String -> String -> String -> [(Char, Char, Char)]
+makeWords _ _ [] = []
+makeWords xs ys (z:zs) = selectFirst xs ys z ++ makeWords xs ys zs
+
+selectFirst :: String -> String -> Char -> [(Char, Char, Char)]
+selectFirst _ [] _ = []
+selectFirst xs (y:ys) z = selectSecond xs y z ++ selectFirst xs ys z
+
+selectSecond :: String -> Char -> Char -> [(Char, Char, Char)]
+selectSecond [] _ _ = []
+selectSecond (x:xs) y z = selectThird x y z : selectSecond xs y z
+
+selectThird :: Char -> Char -> Char -> (Char, Char, Char)
+selectThird x y z = (x, y, z)
+
+
+makeWordsP :: String -> String -> [(Char, Char, Char)]
+makeWordsP _ [] = []
+makeWordsP xs (y:ys) = selectSecondP xs y ++ makeWordsP xs ys
+
+selectSecondP :: String -> Char -> [(Char, Char, Char)]
+selectSecondP [] _ = []
+selectSecondP (x:xs) y = selectThirdP x y : selectSecondP xs y
+
+selectThirdP :: Char -> Char -> (Char, Char, Char)
+selectThirdP y z = ('p', y, z)
