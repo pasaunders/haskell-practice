@@ -116,3 +116,16 @@ myOrFolding = foldr (\a b -> if a == True then True else b) False
 
 myOrFoldingPointFree :: [Bool] -> Bool
 myOrFoldingPointFree = foldr (||) False
+
+myAnyDirect :: (a -> Bool) -> [a] -> Bool
+myAnyDirect _ [] = False
+myAnyDirect f (x:xs)
+  | f x == True = True
+  | f x == False = myAnyDirect f xs
+
+myAnyDirectSymbol :: (a -> Bool) -> [a] -> Bool
+myAnyDirectSymbol _ [] = False
+myAnyDirectSymbol f (x:xs) = f x || myAnyDirectSymbol f xs
+
+-- myAnyFolding :: (a -> Bool) -> [a] -> Bool
+-- myAnyFolding = foldr
