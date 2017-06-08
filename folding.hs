@@ -127,5 +127,9 @@ myAnyDirectSymbol :: (a -> Bool) -> [a] -> Bool
 myAnyDirectSymbol _ [] = False
 myAnyDirectSymbol f (x:xs) = f x || myAnyDirectSymbol f xs
 
--- myAnyFolding :: (a -> Bool) -> [a] -> Bool
--- myAnyFolding = foldr
+myAnyFolding :: (a -> Bool) -> [a] -> Bool
+myAnyFolding f xs = foldr (\a b -> if f a == True then True else b) False xs
+
+myAnyFoldingPointFree :: (a -> Bool) -> [a] -> Bool
+-- point free and typechecks, but doesn't actually work.
+myAnyFoldingPointFree  = flip(foldr . ((.) (&&))) True
