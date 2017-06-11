@@ -132,4 +132,42 @@ myAnyFolding f xs = foldr (\a b -> if f a == True then True else b) False xs
 
 myAnyFoldingPointFree :: (a -> Bool) -> [a] -> Bool
 -- point free and typechecks, but doesn't actually work.
-myAnyFoldingPointFree  = flip(foldr . ((.) (&&))) True
+myAnyFoldingPointFree  = flip(foldr . ((.) (||))) False
+
+-- Unifing types to see why the above function works.
+-- (.) :: (e -> f) -> (d -> e) -> d -> f
+-- (||) :: Bool -> Bool -> Bool
+-- foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+-- foldr :: [a] => (a -> b -> b) -> (b -> [a] -> b)
+-- (.) foldr :: (d -> a -> b -> b) -> d -> b -> [a] -> b
+-- (.) (||) :: (f -> Bool) -> f -> Bool -> Bool
+--             ((f -> Bool) -> f -> Bool -> Bool) -> (f -> Bool) -> Bool -> [f] -> Bool
+--                                                   (f -> Bool) -> Bool -> [f] -> Bool
+-- foldr . ((.) (||)) :: (f -> Bool) -> (Bool -> ([f] -> Bool))
+-- flip :: (a -> b -> c) -> b -> a -> c
+-- flip (foldr . ((.) (||))) :: Bool -> (f -> Bool) -> ([f] -> Bool)
+
+myElemFoldr :: Eq a => a -> [a] -> Bool
+myElemFoldr x xs = foldr (\a b -> (a == x) || b) False xs
+
+myElemAny :: Eq a => a -> [a] -> Bool
+myElemAny x xs = any (\a -> a == x) xs
+
+myReverse :: [a] -> [a]
+-- myReverse xs = foldl (\b a -> a : b) [] xs
+myReverse xs = foldl (flip (:)) [] xs
+
+myMap :: (a -> b) -> [a] -> [b]
+myMap f xs = foldr (\a b -> f a : b) [] xs
+
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter f xs = foldr (\a b -> if f a then a : b else b) [] xs
+
+mySquish :: [[a]] -> [a]
+mySquish xs = foldr (\a b -> a ++ b) [] xs
+
+squishMap :: (a -> [b]) -> [a] -> [b]
+squishMap f xs = foldr (\a b -> f a ++ b) [] xs
+
+squishAgain :: [[a]] -> [a]
+squishAgain xs = squishMap (\a -> ) xs
