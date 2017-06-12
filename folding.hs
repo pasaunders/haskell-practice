@@ -170,4 +170,4 @@ squishMap :: (a -> [b]) -> [a] -> [b]
 squishMap f xs = foldr (\a b -> f a ++ b) [] xs
 
 squishAgain :: [[a]] -> [a]
-squishAgain xs = squishMap (\a -> ) xs
+squishAgain xs = squishMap (\a -> a) xs
